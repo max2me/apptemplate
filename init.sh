@@ -4,15 +4,15 @@
 # If environment variables are not set, keep empty values
 APP_NAME="${APPNAME:-}"
 AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:-}"
-AWS_SECRET_KEY="${AWS_SECRET_KEY:-}"
+AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:-}"
 
 # Check if all required environment variables are provided
-if [ -z "$APP_NAME" ] || [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_KEY" ]; then
+if [ -z "$APP_NAME" ] || [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
     echo "Error: Missing required environment variables"
     echo "Please set the following environment variables before running this script:"
-    echo "  APPNAME            - Application name"
-    echo "  AWS_ACCESS_KEY_ID  - AWS Access Key ID"
-    echo "  AWS_SECRET_KEY     - AWS Secret Key"
+    echo "  APPNAME                 - Application name"
+    echo "  AWS_ACCESS_KEY_ID       - AWS Access Key ID"
+    echo "  AWS_SECRET_ACCESS_KEY   - AWS Secret Access Key"
     exit 1
 fi
 
