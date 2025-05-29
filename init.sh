@@ -42,6 +42,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+echo -e "\033[1A\033[K"  # Clear previous line
+echo "✅ Downloaded application template"
+
 echo "📦 Extracting application template..."
 unzip -q apptemplate.zip > /dev/null 2>&1
 if [ $? -ne 0 ]; then
