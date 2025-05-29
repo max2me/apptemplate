@@ -1,0 +1,13 @@
+{
+  "name": "gallery-app-template",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "setup": "npm install",
+    "start": "npm run start --workspace=webapp",
+    "deploy": "npm run build --workspaces && npm run deploy --workspace=cdk"
+  }
+}
