@@ -2,7 +2,7 @@
 
 # Read values from environment variables
 # If environment variables are not set, keep empty values
-APP_NAME="${APPNAME:-}"
+APP_NAME="${APP_NAME:-}"
 AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:-}"
 AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:-}"
 
@@ -29,6 +29,7 @@ fi
 # Navigate to the application directory
 cd "$APP_NAME" > /dev/null 2>&1
 echo "✅ Successfully created and moved to directory: $(pwd)"
+echo ""
 
 # Step 2: Download and unpack the repository
 echo "📥 Downloading application template from GitHub..."
