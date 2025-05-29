@@ -18,8 +18,6 @@ if [ -z "$APP_NAME" ] || [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS
     exit 1
 fi
 
-echo "🚀 Starting setup for application: $APP_NAME"
-
 # Step 1: Create folder based on application name
 echo "📁 Creating application folder: $APP_NAME"
 mkdir -p "$APP_NAME" > /dev/null 2>&1
@@ -84,16 +82,18 @@ echo -e "\033[1A\033[K"  # Clear previous line
 echo "✅ Installed all dependencies"
 
 # Final instructions
+echo ""
+echo ""
 echo "***************************************************************************************************"
 echo ""
 echo "🎉 SETUP COMPLETED SUCCESSFULLY FOR $APP_NAME!"
 echo ""
-echo "Available commands in $APP_NAME folder:"
-echo "  📋 To run the web server locally:"
-echo "     npm run start"
+echo "Available commands in '$APP_NAME' folder:"
+echo "-  To run the web server locally:"
+echo "   npm run start"
 echo ""
-echo "  🚀 To deploy the site to AWS:"
-echo "     npm run deploy"
+echo "-  To deploy the site to AWS:"
+echo "   npm run deploy"
 echo ""
 echo "Note: Your AWS credentials are set for the current terminal session only."
 echo "      For a new terminal session, you'll need to set them again."
