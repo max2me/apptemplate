@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# Determine if the script is being sourced or executed directly
-if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
-    # Script is being sourced
-    EXIT_COMMAND="return"
-else
-    # Script is being executed
-    EXIT_COMMAND="exit"
-fi
-
 # Read values from environment variables
 # If environment variables are not set, keep empty values
 APP_NAME="${APPNAME:-}"
@@ -22,7 +13,7 @@ if [ -z "$APP_NAME" ] || [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_KEY" ]
     echo "  APPNAME            - Application name"
     echo "  AWS_ACCESS_KEY_ID  - AWS Access Key ID"
     echo "  AWS_SECRET_KEY     - AWS Secret Key"
-    $EXIT_COMMAND 1
+    exit 1
 fi
 
 echo "🚀 Starting setup for application: $APP_NAME"
@@ -32,7 +23,7 @@ echo "📁 Creating application folder: $APP_NAME"
 mkdir -p "$APP_NAME" > /dev/null 2>&1
 if [ ! -d "$APP_NAME" ]; then
     echo "❌ Failed to create directory $APP_NAME"
-    $EXIT_COMMAND 1
+    exit 1
 fi
 
 # Navigate to the application directory
@@ -44,14 +35,14 @@ echo "📥 Downloading application template from GitHub..."
 curl -L -o apptemplate.zip https://github.com/max2me/apptemplate/archive/refs/heads/main.zip > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "❌ Failed to download the repository"
-    $EXIT_COMMAND 1
+    exit 1
 fi
 
 echo "📦 Extracting application template..."
 unzip -q apptemplate.zip > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "❌ Failed to extract the repository"
-    $EXIT_COMMAND 1
+    exit 1
 fi
 
 # Move contents from the extracted directory to the current directory
@@ -79,7 +70,7 @@ echo "📦 Installing dependencies with npm run setup..."
 npm run setup > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "❌ Failed to run npm setup"
-    $EXIT_COMMAND 1
+    exit 1
 fi
 echo "✅ Successfully installed all dependencies"
 
