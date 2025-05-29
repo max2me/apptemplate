@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+
 # Read values from environment variables
 # If environment variables are not set, keep empty values
 APP_NAME="${APP_NAME:-}"
@@ -26,8 +28,10 @@ if [ ! -d "$APP_NAME" ]; then
     exit 1
 fi
 
+
 # Navigate to the application directory
 cd "$APP_NAME" > /dev/null 2>&1
+echo -e "\033[1A\033[K"  # Clear previous line
 echo "✅ Successfully created and moved to directory: $(pwd)"
 echo ""
 
@@ -46,16 +50,21 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+echo -e "\033[1A\033[K"  # Clear previous line
+echo "✅ Extracted application template"
+
 # Move contents from the extracted directory to the current directory
 echo "🔄 Moving files to the application directory..."
 mv apptemplate-main/* . > /dev/null 2>&1
 mv apptemplate-main/.* . > /dev/null 2>&1 || true  # Move hidden files, ignore errors
 rmdir apptemplate-main > /dev/null 2>&1
 rm apptemplate.zip > /dev/null 2>&1
+echo -e "\033[1A\033[K"  # Clear previous line
 echo "✅ Successfully extracted application template"
 
 # Step 3: Acknowledge AWS credentials
 echo "🔐 Using AWS credentials from environment variables"
+echo -e "\033[1A\033[K"  # Clear previous line
 echo "✅ AWS credentials acknowledged"
 
 # Step 4: Create appConfig.json
@@ -64,7 +73,8 @@ mkdir -p ./packages/cdk > /dev/null 2>&1
 echo "{
   \"applicationName\": \"$APP_NAME\"
 }" > ./packages/cdk/appConfig.json
-echo "✅ Created appConfig.json with application name: $APP_NAME"
+echo -e "\033[1A\033[K"  # Clear previous line
+echo "✅ Created packages/cdk/appConfig.json with application name: $APP_NAME"
 
 # Step 5: Run npm setup
 echo "📦 Installing dependencies with npm run setup..."
@@ -73,18 +83,20 @@ if [ $? -ne 0 ]; then
     echo "❌ Failed to run npm setup"
     exit 1
 fi
+echo -e "\033[1A\033[K"  # Clear previous line
 echo "✅ Successfully installed all dependencies"
 
 # Final instructions
-echo ""
+echo "***************************************************************************************************"
 echo "🎉 Setup completed successfully for $APP_NAME!"
 echo ""
-echo "Available commands:"
+echo "Available commands in $APP_NAME folder:"
 echo "  📋 To run the web server locally:"
-echo "     cd $APP_NAME && npm run start"
+echo "     npm run start"
 echo ""
 echo "  🚀 To deploy the site to AWS:"
-echo "     cd $APP_NAME && npm run deploy"
+echo "     npm run deploy"
 echo ""
 echo "Note: Your AWS credentials are set for the current terminal session only."
 echo "      For a new terminal session, you'll need to set them again."
+echo "***************************************************************************************************"
