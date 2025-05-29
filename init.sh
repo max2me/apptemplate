@@ -30,7 +30,7 @@ fi
 # Navigate to the application directory
 cd "$APP_NAME" > /dev/null 2>&1
 echo -e "\033[1A\033[K"  # Clear previous line
-echo "✅ Created and moved to directory: $(pwd)"
+echo -n "✅ Created and moved to directory: $(pwd)"
 
 # Step 2: Download and unpack the repository
 echo "📥 Downloading application template from GitHub..."
@@ -41,7 +41,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo -e "\033[1A\033[K"  # Clear previous line
-echo "✅ Downloaded application template"
+echo -n "✅ Downloaded application template"
 
 echo "📦 Extracting application template..."
 unzip -q apptemplate.zip > /dev/null 2>&1
@@ -51,7 +51,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo -e "\033[1A\033[K"  # Clear previous line
-echo "✅ Extracted application template"
+echo -n "✅ Extracted application template"
 
 # Step 3: Move contents from the extracted directory to the current directory
 echo "🔄 Moving files to the application directory..."
@@ -69,7 +69,7 @@ echo "{
   \"applicationName\": \"$APP_NAME\"
 }" > ./packages/cdk/appConfig.json
 echo -e "\033[1A\033[K"  # Clear previous line
-echo "✅ Created packages/cdk/appConfig.json with application name: $APP_NAME"
+echo -n "✅ Created packages/cdk/appConfig.json with application name: $APP_NAME"
 
 # Step 5: Run npm setup
 echo "📦 Installing dependencies with npm run setup..."
@@ -79,7 +79,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 echo -e "\033[1A\033[K"  # Clear previous line
-echo "✅ Installed all dependencies"
+echo -n "✅ Installed all dependencies"
 
 # Final instructions
 echo ""
