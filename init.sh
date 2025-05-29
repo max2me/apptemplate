@@ -1,0 +1,99 @@
+#!/bin/bash
+
+# Determine if the script is being sourced or executed directly
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
+    # Script is being sourced
+    EXIT_COMMAND="return"
+else
+    # Script is being executed
+    EXIT_COMMAND="exit"
+fi
+
+# Read values from environment variables
+# If environment variables are not set, keep empty values
+APP_NAME="${APPNAME:-}"
+AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:-}"
+AWS_SECRET_KEY="${AWS_SECRET_KEY:-}"
+
+# Check if all required environment variables are provided
+if [ -z "$APP_NAME" ] || [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_KEY" ]; then
+    echo "Error: Missing required environment variables"
+    echo "Please set the following environment variables before running this script:"
+    echo "  APPNAME            - Application name"
+    echo "  AWS_ACCESS_KEY_ID  - AWS Access Key ID"
+    echo "  AWS_SECRET_KEY     - AWS Secret Key"
+    $EXIT_COMMAND 1
+fi
+
+echo "🚀 Starting setup for application: $APP_NAME"
+
+# Step 1: Create folder based on application name
+echo "📁 Creating application folder: $APP_NAME"
+mkdir -p "$APP_NAME"
+if [ ! -d "$APP_NAME" ]; then
+    echo "❌ Failed to create directory $APP_NAME"
+    $EXIT_COMMAND 1
+fi
+
+# Navigate to the application directory
+cd "$APP_NAME"
+echo "✅ Successfully created and moved to directory: $(pwd)"
+
+# Step 2: Download and unpack the repository
+echo "📥 Downloading application template from GitHub..."
+curl -L -o apptemplate.zip https://github.com/max2me/apptemplate/archive/refs/heads/main.zip
+if [ $? -ne 0 ]; then
+    echo "❌ Failed to download the repository"
+    $EXIT_COMMAND 1
+fi
+
+echo "📦 Extracting application template..."
+unzip -q apptemplate.zip
+if [ $? -ne 0 ]; then
+    echo "❌ Failed to extract the repository"
+    $EXIT_COMMAND 1
+fi
+
+# Move contents from the extracted directory to the current directory
+echo "🔄 Moving files to the application directory..."
+mv apptemplate-main/* .
+mv apptemplate-main/.* . 2>/dev/null || true  # Move hidden files, ignore errors
+rmdir apptemplate-main
+rm apptemplate.zip
+echo "✅ Successfully extracted application template"
+
+# Step 3: Set AWS environment variables
+echo "🔐 Using AWS credentials from environment variables"
+export AWS_SECRET_ACCESS_KEY="$AWS_SECRET_KEY"
+echo "✅ AWS credentials set successfully"
+
+# Step 4: Create appConfig.json
+echo "⚙️ Creating application configuration file"
+mkdir -p ./packages/cdk
+echo "{
+  \"applicationName\": \"$APP_NAME\"
+}" > ./packages/cdk/appConfig.json
+echo "✅ Created appConfig.json with application name: $APP_NAME"
+
+# Step 5: Run npm setup
+echo "📦 Installing dependencies with npm run setup..."
+npm run setup
+if [ $? -ne 0 ]; then
+    echo "❌ Failed to run npm setup"
+    $EXIT_COMMAND 1
+fi
+echo "✅ Successfully installed all dependencies"
+
+# Final instructions
+echo ""
+echo "🎉 Setup completed successfully for $APP_NAME!"
+echo ""
+echo "Available commands:"
+echo "  📋 To run the web server locally:"
+echo "     cd $APP_NAME && npm run start"
+echo ""
+echo "  🚀 To deploy the site to AWS:"
+echo "     cd $APP_NAME && npm run deploy"
+echo ""
+echo "Note: Your AWS credentials are set for the current terminal session only."
+echo "      For a new terminal session, you'll need to set them again."
