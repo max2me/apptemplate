@@ -29,8 +29,8 @@ fi
 
 # Navigate to the application directory
 cd "$APP_NAME" > /dev/null 2>&1
-echo -e "\033[1A\033[K"  # Clear previous line
-echo "✅ Created and moved to directory: $(pwd)"
+
+echo -e "\033[1A\033[K✅ Created and moved to directory: $(pwd)"
 
 # Step 2: Download and unpack the repository
 echo "📥 Downloading application template from GitHub..."
@@ -40,8 +40,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "\033[1A\033[K"  # Clear previous line
-echo "✅ Downloaded application template"
+
+echo -e "\033[1A\033[K✅ Downloaded application template"
 
 echo "📦 Extracting application template..."
 unzip -q apptemplate.zip > /dev/null 2>&1
@@ -50,8 +50,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo -e "\033[1A\033[K"  # Clear previous line
-echo "✅ Extracted application template"
+
+echo -e "\033[1A\033[K✅ Extracted application template"
 
 # Step 3: Move contents from the extracted directory to the current directory
 echo "🔄 Moving files to the application directory..."
@@ -59,8 +59,8 @@ mv apptemplate-main/* . > /dev/null 2>&1
 mv apptemplate-main/.* . > /dev/null 2>&1 || true  # Move hidden files, ignore errors
 rmdir apptemplate-main > /dev/null 2>&1
 rm apptemplate.zip > /dev/null 2>&1
-echo -e "\033[1A\033[K"  # Clear previous line
-echo "✅ Moved files to the application directory"
+
+echo -e "\033[1A\033[K✅ Moved files to the application directory"
 
 # Step 4: Create appConfig.json
 echo "⚙️ Creating application configuration file"
@@ -68,8 +68,8 @@ mkdir -p ./packages/cdk > /dev/null 2>&1
 echo "{
   \"applicationName\": \"$APP_NAME\"
 }" > ./packages/cdk/appConfig.json
-echo -e "\033[1A\033[K"  # Clear previous line
-echo "✅ Created packages/cdk/appConfig.json with application name: $APP_NAME"
+
+echo -e "\033[1A\033[K✅ Created packages/cdk/appConfig.json with application name: $APP_NAME"
 
 # Step 5: Run npm setup
 echo "📦 Installing dependencies with npm run setup..."
@@ -78,8 +78,8 @@ if [ $? -ne 0 ]; then
     echo "❌ Failed to run npm setup"
     exit 1
 fi
-echo -e "\033[1A\033[K"  # Clear previous line
-echo "✅ Installed all dependencies"
+
+echo -e "\033[1A\033[K✅ Installed all dependencies"
 
 # Final instructions
 echo ""
