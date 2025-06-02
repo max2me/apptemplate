@@ -81,8 +81,6 @@ fi
 
 echo -e "\033[1A\033[K✅ Installed all dependencies"
 
-cd "$APP_NAME"
-
 # Final instructions
 echo ""
 echo ""
@@ -90,11 +88,15 @@ echo "**************************************************************************
 echo ""
 echo "🎉 SETUP COMPLETED SUCCESSFULLY FOR $APP_NAME!"
 echo ""
-echo "Available commands:"
-echo "-  To run the web server locally:"
+echo "Next steps:"
+echo ""
+echo "1  Change your work directory:"
+echo "   cd $APP_NAME"
+echo ""
+echo "2  Run the web server locally:"
 echo "   npm run start"
 echo ""
-echo "-  To deploy the site to AWS:"
+echo "3  Deploy the site to AWS:"
 echo "   npm run deploy"
 echo ""
 echo "Note: Your AWS credentials are set for the current terminal session only."
