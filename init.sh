@@ -81,6 +81,8 @@ fi
 
 echo -e "\033[1A\033[K✅ Installed all dependencies"
 
+cd "$APP_NAME"
+
 # Final instructions
 echo ""
 echo ""
@@ -88,7 +90,7 @@ echo "**************************************************************************
 echo ""
 echo "🎉 SETUP COMPLETED SUCCESSFULLY FOR $APP_NAME!"
 echo ""
-echo "Available commands in '$APP_NAME' folder:"
+echo "Available commands:"
 echo "-  To run the web server locally:"
 echo "   npm run start"
 echo ""

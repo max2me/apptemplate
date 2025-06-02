@@ -21,7 +21,7 @@ export class CdkStack extends cdk.Stack {
     // Create a resource group for the application
     const resourceGroup = new resourcegroups.CfnGroup(this, 'ResourceGroup', {
       name: `Project-${applicationName}`,
-      description: `Resources for ${applicationName} application`,
+      description: `website`,
       resourceQuery: {
         type: 'TAG_FILTERS_1_0',
         query: {
