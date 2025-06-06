@@ -6,6 +6,7 @@ This project uses npm workspaces to manage a React TypeScript webapp built with 
 
 - `packages/webapp`: React TypeScript application built with Vite.js
 - `packages/cdk`: AWS CDK stack for deploying the webapp to S3 and CloudFront
+- `packages/api-mock`: Local development server for testing API Gateway and Lambda functions
 
 ## Getting Started
 
@@ -24,26 +25,14 @@ This project uses npm workspaces to manage a React TypeScript webapp built with 
 
 ### Development
 
-1. Run the webapp locally:
+1. Run the mock-api locally:
    ```
-   npm run start
-   ```
-   
-   Or directly:
-   ```
-   npm run dev --workspace=webapp
+   npm run start:web
    ```
 
-2. Preview the production build:
+2. Run the API mock server locally:
    ```
-   npm run preview --workspace=webapp
-   ```
-
-### Building
-
-1. Build the webapp:
-   ```
-   npm run build --workspace=webapp
+   npm run start:api
    ```
 
 ### Deployment

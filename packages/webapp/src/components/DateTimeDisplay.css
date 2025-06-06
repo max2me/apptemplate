@@ -1,0 +1,68 @@
+.datetime-display {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.datetime-content h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+  text-align: center;
+}
+
+.datetime-info {
+  margin-bottom: 0;
+}
+
+.datetime-formatted {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.datetime-iso,
+.datetime-timestamp {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.datetime-loading {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+.datetime-error {
+  text-align: center;
+  color: #dc3545;
+}
+
+.datetime-error p {
+  margin-bottom: 1rem;
+}
+
+.retry-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: block;
+  margin: 0 auto;
+  transition: background-color 0.2s;
+}
+
+.retry-button:hover {
+  background-color: #c82333;
+}

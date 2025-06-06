@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "deploy": "cdk bootstrap && cdk deploy --all"
+    "deploy": "cdk deploy"
   },
   "devDependencies": {
     "@jest/globals": "^30.0.0-beta.3",
@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "aws-cdk-lib": "^2.198.0",
-    "constructs": "^10.0.0"
+    "constructs": "^10.0.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
   }
 }

@@ -1,5 +1,6 @@
 import logo from './assets/logo.svg'
 import './App.css'
+import { DateTimeDisplay } from './components/DateTimeDisplay'
 
 function App() {
     return (
@@ -11,8 +12,9 @@ function App() {
             </div>
             <h1>🎉 Congratulations</h1>
             <p className="read-the-docs">
-                You've got yourself a website. This is just the beginning of your cloud journey. Take a moment to celebrate – you've accomplished something great!
+                You've got yourself a web application!<br/>The date and time displayed below is fetched from the API.
             </p>
+            <DateTimeDisplay />
         </div>
     )
 }

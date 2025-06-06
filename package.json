@@ -7,7 +7,8 @@
   ],
   "scripts": {
     "setup": "npm install",
-    "start": "npm run start --workspace=webapp",
-    "deploy": "npm run build --workspaces && npm run deploy --workspace=cdk"
+    "start:web": "npm run start --workspace=webapp",
+    "start:api": "npm run start --workspace=api-mock",
+    "deploy": "npm run build --workspace=webapp --workspace=cdk && npm run deploy --workspace=cdk"
   }
 }
