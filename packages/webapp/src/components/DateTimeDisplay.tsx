@@ -32,16 +32,10 @@ export const DateTimeDisplay = () => {
   return (
     <div className="datetime-display">
       <div className="datetime-content">
-        <h3>API Server Date & Time</h3>
+        <h3>API server date &amp; time</h3>
         <div className="datetime-info">
           <div className="datetime-formatted">
             {data.formattedDate}
-          </div>
-          <div className="datetime-iso">
-            ISO: {data.date}
-          </div>
-          <div className="datetime-timestamp">
-            Timestamp: {data.timestamp}
           </div>
         </div>
       </div>
